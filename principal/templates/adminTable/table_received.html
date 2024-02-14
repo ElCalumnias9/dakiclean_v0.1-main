@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Recibidos {% endblock %} 
+{% block content %}
+    <div class="h-screen w-full mx-auto flex pt-24 justify-center bg-[#fcfcfc]">
+        <div class="overflow-x-auto relative rounded-md mx-2 bg-[#fcfcfc]">
+            <div class="py-10">
+                <h1 class="text-xl">Bienvenido <span class="font-semibold">{{ user.username }}</span></h1>
+
+                <ul>
+                    <li class="flex justify-start items-center pt-4">
+                        <p class="text-sm">Utiliza</p>
+                        <ion-icon name="close-outline" class="text-xl text-red-500 " style="pointer-events:none"></ion-icon> 
+                        <p class="text-sm">Para eliminar un registro.</p>
+                    </li>
+                </ul>
+            </div>
+            <table class="w-full text-sm text-left text-gray-500 shadow-sm">
+                <thead class="text-xs text-white uppercase bg-[#524D9A]">
+                    <tr>
+                        <th scope="col" class="py-3 px-6">
+                            Nombre
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Teléfono
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Correo
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Motivo
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in received %}
+                    <tr class="bg-white border-b">
+                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                            {{ r.nombre }} {{ r.apellido }}
+                        </th>
+                        <td class="py-4 px-6">
+                            {{ r.telefono }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ r.correo }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ r.motivo }}
+                        </td>
+                        <td class="py-4 px-6 flex items-center"> 
+                            {% comment %} <a data-tooltip-target="tooltip-marcar" href="#" class="text-green-500 text-xl mx-1"><ion-icon name="checkmark-outline" style="pointer-events:none"></ion-icon></a>
+                            <div id="tooltip-marcar" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                Leído
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>  {% endcomment %}
+                            <a data-tooltip-target="tooltip-eliminar" href="#" onclick="eliminarContacto({{ r.id }})" class="text-red-500 text-xl mx-1"><ion-icon name="close-outline" style="pointer-events:none"></ion-icon></a>
+                            <div id="tooltip-eliminar" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                Eliminar
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if received %}
+                {% else %}
+                    <div class="flex justify-center items-center py-4">
+                        <p class="text-gray-500 text-lg">No hay mensajes recibidos</p>
+                    </div>
+                {% endif %}
+            </table>
+            <div class="mx-2 py-1 px-2 bg-transparent flex items-center justify-end">
+                {% if received.has_previous %}
+                    <a href="?page=1" class="text-black text-sm mx-2">Primera</a>
+                    <a href="?page={{ received.previous_page_number }}" class="text-black text-sm mx-2">Anterior</a>
+                {% endif %}
+                    {% if received %}<p class="text-white text-sm mx-2 py-2 px-2 bg-[#524D9A] rounded-md">Página {{ received.number }} de {{ received.paginator.num_pages }}</p>{% endif %}
+                {% if received.has_next %}
+                    <a href="?page={{ received.next_page_number }}" class="text-black text-sm mx-2">Siguiente</a>
+                    <a href="?page={{ received.paginator.num_pages }}" class="text-black text-sm mx-2">última</a>
+                {% endif %}
+
+            </div>
+        </div>
+        {% block js %}
+            <script>
+            function eliminarContacto(id){
+                Swal.fire({
+                    "title": "¿Estás seguro?",
+                    "icon": "warning",
+                    "showCancelButton": true,
+                    "confirmButtonColor": "#dc3545",
+                    "cancelButtonColor": "#333",
+                    "cancelButtonText": "Cancelar",
+                    "confirmButtonText": "Eliminar",
+                    "reverseButtons": true
+                })
+                    .then(function (result) {
+                        if (result.isConfirmed) {
+                            window.location.href = "/delete/" + id;
+                        }
+                    });
+            }
+            </script>
+        {% endblock %}
+    </div>
+{% endblock %}

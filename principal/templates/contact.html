@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Contácto {% endblock %} 
+{% block content %}
+
+<div>
+    <div class="relative">
+        <div class="h-64 md:h-96 bg-cover bg-no-repeat bg-center py-36" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'img/IMG4.1.jpg' %});">
+            <div class="items-center justify-center">
+                <h1 class="text-2xl md:text-4xl text-white font-bold text-center">Contáctanos</h1>
+                <p class="text-xs md:text-lg text-center text-white">Si quieres agendar una visita o si tienes dudas.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="py-10 pl-0 pr-0 mx-5 my-5 md:my-10 sm:mx-16 md:py-14 md:mx-28 xl:mx-56 rounded-xl">
+        <div class="mx-5 md:mx-20 py-8 pl-8 pr-8 md:py-14 md:pl-14 md:pr-14 rounded-xl backdrop-blur-[10px] shadow-xl border-gray-200 border">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="lg:grid lg:grid-cols-2">
+                    <div class="mx-6 mb-6">
+                        <label for="nombre" class="block mb-2 text-sm font-medium text-gray-600">Nombre</label>
+                        {{form.nombre}}
+                    </div>
+                    <div class="mx-6 mb-6">
+                        <label for="apellido" class="block mb-2 text-sm font-medium text-gray-600">Apellido</label>
+                        {{form.apellido}}
+                    </div>
+                </div>
+                <div class="mx-6 mb-6">
+                    <label for="telefono" class="block mb-2 text-sm font-medium text-gray-600">Número de teléfono</label>
+                    {{form.telefono}}
+                </div>
+                <div class="mx-6 mb-6">
+                    <label for="correo" class="block mb-2 text-sm font-medium text-gray-600">Corréo electrónico</label>
+                    {{form.correo}}
+                </div>
+                <div class="mx-6 mb-6">
+                    <label for="motivo" class="block mb-2 text-sm font-medium text-gray-600">Dejanos el motivo del contácto</label>
+                    {{form.motivo}}
+                </div>
+                <div class="mx-6">
+                    <button type="submit" class="flex justify-center items-center rounded-md border border-gray-400 bg-white py-2 px-4 text-sm font-medium text-gray-600 shadow-sm hover:bg-[#524D9A] hover:text-white duration-500 hover:border-whit group">Enviar <ion-icon name="send-outline" class="ml-2 group-hover:translate-x-2 duration-300"></ion-icon></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

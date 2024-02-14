@@ -1,0 +1,75 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Inicio {% endblock %} 
+{% block content %}
+
+<!-- HEADER INICIO DE LA PÁGINA -->
+<div class="h-screen w-full flex items-center bg-center bg-cover bg-no-repeat bg-fixed" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url({% static 'img/IMG1.jpg' %}); opacity: 97%;">
+    <div class="mx-auto">
+        <h1 class="text-white text-4xl md:text-5xl font-normal text-center">Servicio de Limpieza <br>profesional</h1><br>
+        <h1 class="text-white text-2xl md:text-3xl font-thin text-center">Daki Clean</h1>
+
+        <div class="text-gray-300 mt-10">
+            <ul class="grid gap-4 grid-cols-2 md:grid-cols-4 items-center justify-between">
+                <li>
+                    <div class="flex justify-center items-center">
+                        <ion-icon name="calendar-outline" class="text-4xl"></ion-icon>
+                    </div>
+                    <p class="text-center">Agenda una hora</p>
+                </li>
+                <li class="px-2">
+                    <div class="flex justify-center items-center">
+                        <ion-icon name="checkmark-circle-outline" class="text-4xl"></ion-icon>
+                    </div>
+                    <p class="text-center">Servicio rápido</p>
+                </li>
+                <li class="px-2">
+                    <div class="flex justify-center items-center">
+                        <ion-icon name="shield-half-outline" class="text-4xl"></ion-icon>
+                    </div>
+                    <p class="text-center">100% Seguro</p>
+                </li>
+                <li class="px-2">
+                    <div class="flex justify-center items-center">
+                        <ion-icon name="home-outline" class="text-4xl"></ion-icon>
+                    </div>
+                    <p class="text-center">Vamos a tu hogar</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- INFORMACIÓN DE LA EMPRESA? -->
+<div class="flex flex-col items-center justify-center h-screen w-full bg-[#fcfcfc]">
+    <div class="flex flex-col items-center justify-center h-1/2 w-full">
+        <p class="text-lg font-thin">D a k i C l e a n</p>
+        <h1 class="text-2xl font-semibold md:text-4xl md:font-normal">¿En qué podemos ayudarte?</h1>
+        <p class="mt-4 text-gray-600">Somos Una empresa 100% dedicada a la limpieza de tu Hogar</p>
+        <p class="mt-4 text-gray-600">Trabajamos con tecnologia Alemana y de Calidad</p>
+        <p class="mt-4 text-gray-600">Sobre todo, Le damos vida a tu Hogar</p>
+    </div>
+    <div class="flex flex-col items-center justify-center h-1/2 w-full">
+        <div class="bg-[#5e59aa] w-full h-screen">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="py-16 h-screen w-full flex justify-center">  
+    <div class="m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
+            <div class="md:5/12 lg:w-5/12">
+                <img src="{% static 'img/IMG5.jpeg' %}" alt="About DakiClean" loading="lazy" class="rounded-lg">
+            </div>
+            <div class="md:7/12 lg:w-6/12">
+            <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Nuestro Compromiso</h2>
+            <p class="mt-6 text-gray-600">Como empresa queremos garantizamos una limpieza profunda y optima en tu hogar, con personal altamente capacitado para dejar tu hogar como el primer dia</p>
+            <p class="mt-4 text-gray-600">Para mayor informacion puedes escribirnos para agendar una hora o consulta</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

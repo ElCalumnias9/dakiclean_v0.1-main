@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logoicon.ico'%}">
+    <!-- Carga stylesheet tailwind.css y flowbite navbar js -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body class="bg-[#fcfcfc] scroll-smooth">
+    <!-- Nav -->
+    <header>
+      {% comment %} backdrop-blur-[10px] bg-[#ffffff21] {% endcomment %}
+        <nav class="px-2 sm:px-4 fixed w-full z-20 top-0 left-0 shadow-sm" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2));">
+            <div class="container flex flex-wrap justify-between items-center mx-auto">
+            <a href="{% url 'home' %}" class="flex items-center">
+                <img src="{% static 'img/logo.png' %}" class="h-12 md:h-20" alt="dakiclean Logo">
+            </a>
+            <div class="flex">
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-white rounded-lg md:hidden" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="text-3xl">
+                      <ion-icon name="menu-outline" onclick="Menu(this)"></ion-icon>
+                    </span>
+                </button>
+            </div>
+            <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1 backdrop-blur-md rounded-sm md:backdrop-blur-0" id="navbar-sticky">
+              <ul class="flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm font-semibold">
+                <li>
+                  <a href="{% url 'home' %}" class="block py-2 md:py-1 pr-4 pl-3 text-white rounded hover:text-[#5e59aa] duration-500">Inicio</a>
+                </li>
+                <li>
+                  <a href="{% url 'contact' %}" class="block py-2 md:py-1 pr-4 pl-3 text-white rounded hover:text-[#5e59aa] duration-500">Contácto</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                  <a href="{% url 'recepted' %}" class="block py-2 md:py-1 pr-4 pl-3 text-white rounded hover:text-[#5e59aa] duration-500">Recepción</a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}" class="block py-2 md:py-1 pr-4 pl-3 text-black rounded duration-500 bg-[#fcfcfc] hover:text-white hover:bg-[#5e59aa]">Cerrar Sesión</a>
+                </li>
+                {% else %}
+                <li>
+                  <a href="{% url 'login' %}" class="block py-2 md:py-1 pr-4 pl-3 text-black rounded duration-500 bg-[#fcfcfc] hover:text-white hover:bg-[#5e59aa]">Inicio de sesión</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            </div>
+          </nav>
+    </header>
+
+    {% block content %} 
+    
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-[#fcfcfc]">
+      <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <div class="flex justify-center sm:justify-start">
+              <img src="{% static 'img/dakilogin.png' %}" class="h-20 md:h-24" alt="dakiclean Logo">
+          </div>
+    
+          <p class="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">
+            Copyright &copy; 2022. DakiCleanSpa.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- Script customs -->
+    <script src="{% static 'js/Navbar.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    {% if messages %}
+        {% for m in  messages %}
+          <script>
+            Swal.fire({
+              title: 'Confirmado',
+              text: '{{ m }}',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2500
+            })
+          </script>
+        {% endfor %}
+    {% endif %}
+    {% block js %} 
+    
+    {% endblock %}
+  </body>
+</html>
