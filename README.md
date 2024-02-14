@@ -22,11 +22,17 @@ DATABASES = {
 
 
 # Una vez hecho esto ingresaras a tu Visual Studio Code Y abriras la carpeta
+
 Abrir la terminal
+
 # Deberas de Ingresar lo Sigiente:
+
 python manage.py makemigrations
+
 python manage.py migrate 
+
 python manage.py runserver 
+
 
 ------------Y listo------------
 
