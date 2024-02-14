@@ -25,7 +25,7 @@ DATABASES = {
 
 Abrir la terminal
 
-# Deberas de Ingresar lo Sigiente:
+# Deberas de Ingresar lo Siguiente:
 
 python manage.py makemigrations
 
